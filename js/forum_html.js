@@ -8,24 +8,24 @@ $(document).ready(function() {
             'beforeend',
             'afterend'
         ];
-    for (var i = 0, size = window.FFScriptSettings.script16.length; i < size; i++) {
-        if (window.FFScriptSettings.script16[i].where >= 1 && window.FFScriptSettings.script16[i].where <= 4) {
-            if (!isNaN(Number(window.FFScriptSettings.script16[i].id))) {
-                window.FFScriptSettings.script16[i].id = 'f' + window.FFScriptSettings.script16[i].id;
+    for (var i = 0, size = window.FFScript.settings.script16.length; i < size; i++) {
+        if (window.FFScript.settings.script16[i].where >= 1 && window.FFScript.settings.script16[i].where <= 4) {
+            if (!isNaN(Number(window.FFScript.settings.script16[i].id))) {
+                window.FFScript.settings.script16[i].id = 'f' + window.FFScript.settings.script16[i].id;
             }
-            obj = document.getElementById(window.FFScriptSettings.script16[i].id);
+            obj = document.getElementById(window.FFScript.settings.script16[i].id);
             if (obj !== null) {
-                obj.insertAdjacentHTML(positions[window.FFScriptSettings.script16[i].where - 1], window.FFScriptSettings.script16[i].html)
+                obj.insertAdjacentHTML(positions[window.FFScript.settings.script16[i].where - 1], window.FFScript.settings.script16[i].html)
             } else {
-                obj = document.getElementsByClassName(window.FFScriptSettings.script16[i].id)[0];
+                obj = document.getElementsByClassName(window.FFScript.settings.script16[i].id)[0];
                 if (typeof obj !== "undefined") {
                     obj = obj.previousElementSibling;
                     while (!obj.classList.contains('group-section')) {
                         obj = obj.previousElementSibling;
                     }
-                    obj.insertAdjacentHTML(positions[window.FFScriptSettings.script16[i].where - 1], window.FFScriptSettings.script16[i].html)
+                    obj.insertAdjacentHTML(positions[window.FFScript.settings.script16[i].where - 1], window.FFScript.settings.script16[i].html)
                 } else {
-					console.log("L'id "+window.FFScriptSettings.script16[i].id+" non è stato trovato.");
+					console.log("L'id "+window.FFScript.settings.script16[i].id+" non è stato trovato.");
 				}
             }
         }
