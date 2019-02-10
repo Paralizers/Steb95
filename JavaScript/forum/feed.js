@@ -18,8 +18,8 @@ $(document).ready(function() {
         return output;
     }
 
-    String.prototype.removeTags = function() {
-        return this.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '').replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '').replace('<br />', ' ').replace(/<\/?\w+[^>]*\/?>/g, '').trim();
+    function removeTags(str) {
+        return str.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '').replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '').replace('<br />', ' ').replace(/<\/?\w+[^>]*\/?>/g, '').trim();
     };
     window.FFScript.settings.script109.feeds = uniqueArray(window.FFScript.settings.script109.feeds, 'link');
     var links = getElementsFromArray(window.FFScript.settings.script109.feeds, 'link'),
@@ -82,7 +82,7 @@ $(document).ready(function() {
                         ntf[feedInfo.link] = (prevSt === false || typeof prevSt[feedInfo.link] == 'undefined') ? feedInfo.items.length : notifyCounter(feedInfo, prevSt[feedInfo.link]);
                     }
                     $(feedInfo.selector).append(feedObject(feedInfo, ntf[feedInfo.link], index + 1));
-                } else console.log('[st-feed-' + (index + 1) + '] Selettore non trovato!');
+                }
             });
             if (!jQuery.isEmptyObject(localSt) && JSON.stringify(localSt) !== localStorage.getItem('stFeedScript')) {
                 localStorage.setItem('stFeedScript', JSON.stringify(localSt));
@@ -116,7 +116,7 @@ $(document).ready(function() {
                         d = new Date($(this).find(feedInfo.tags.time).text());
                         d = '<div class="st-item-time">' + fromTimeToDate(d.getTime()) + '</div>';
                     }
-                    feedHtml += '<li class="st-feed-item"><div class="st-item-title"><a href="' + $(this).find(feedInfo.tags.href).text().removeTags() + '" target="_blank">' + $(this).find('title').text().removeTags() + '</a></div>' + d + (feedInfo.description && $(this).find(feedInfo.tags.desc).length > 0 ? '<div class="st-item-desc">' + $(this).find(feedInfo.tags.desc).text().removeTags() + '</div>' : '') + (feedInfo.optionals.length > 0 ? optionalParameters($(this), feedInfo.optionals) : '') + '</li>';
+                    feedHtml += '<li class="st-feed-item"><div class="st-item-title"><a href="' + removeTags($(this).find(feedInfo.tags.href).text()) + '" target="_blank">' + removeTags($(this).find('title').text()) + '</a></div>' + d + (feedInfo.description && $(this).find(feedInfo.tags.desc).length > 0 ? '<div class="st-item-desc">' + removeTags($(this).find(feedInfo.tags.desc).text()) + '</div>' : '') + (feedInfo.optionals.length > 0 ? optionalParameters($(this), feedInfo.optionals) : '') + '</li>';
                 });
                 feedHtml += '</ul></div>';
                 return feedHtml;
@@ -142,7 +142,7 @@ $(document).ready(function() {
                     cur = cur.replace(':', '\\:');
                     if (item.find(cur).length > 0) {
                         out += '<div class="optional optional-' + (i + 1) + '">' + item.find(cur).map(function() {
-                            return $(this).text().removeTags()
+                            return removeTags($(this).text())
                         }).get().join(', ') + '</div>';
                     }
                 });
