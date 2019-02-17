@@ -20,19 +20,19 @@ $(document).ready(function() {
         return output;
     }
 
-    window.FFScriptUSER.settings.script107.accounts = uniqueArray(window.FFScriptUSER.settings.script107.accounts, 'id');
+    window.FFScript.settings.script107.accounts = uniqueArray(window.FFScript.settings.script107.accounts, 'id');
     if (document.URL.indexOf(document.domain + '/m/') > -1 && $('body').is('#forum')) {
         $.ajax({
             url: '/api.php?f=' + getParameterByName('f') + (getParameterByName('st') !== null ? ('&st=' + getParameterByName('st')) : ''),
             dataType: 'json',
             success: function(r) {
-                $.each(window.FFScriptUSER.settings.script107.accounts, function(index, item) {
+                $.each(window.FFScript.settings.script107.accounts, function(index, item) {
                     if (item['hideTopics']) {
                         r['threads'].forEach(function(e) {
                             if (e.info.start.id.toString() === item['id']) {
                                 $('.web a[href="/m/?t=' + e.id + '"]').parent().css({
                                     'display': 'none'
-                                }).after('<div class="info st-hidden-topic" style="cursor: pointer; text-align: center; border-radius: 0;">' + window.FFScriptUSER.settings.script107.topicMsg + (item['seeAuthor'] ? ' Autore: ' + ('<a href="/m/?act=Profile&MID=' + e.info.start.id + '">' + e.info.start.name + '</a>') : '') + '</div>').siblings(':not(.info)').css({
+                                }).after('<div class="info st-hidden-topic" style="cursor: pointer; text-align: center; border-radius: 0;">' + window.FFScript.settings.script107.topicMsg + (item['seeAuthor'] ? ' Autore: ' + ('<a href="/m/?act=Profile&MID=' + e.info.start.id + '">' + e.info.start.name + '</a>') : '') + '</div>').siblings(':not(.info)').css({
                                     'display': 'none'
                                 });
                             }
@@ -47,14 +47,14 @@ $(document).ready(function() {
             }
         });
     } else {
-        $.each(window.FFScriptUSER.settings.script107.accounts, function(index, item) {
+        $.each(window.FFScript.settings.script107.accounts, function(index, item) {
             if (item['hideTopics']) {
                 if ($('.xx').length !== 0) {
                     $('.xx').children('a').each(function() {
                         if ($(this).attr('href').split("=")[2] == item['id']) {
                             $(this).parent().css({
                                 'display': 'none'
-                            }).after(($(this).parent().is('div') ? ('<div class="info st-hidden-topic" style="cursor: pointer; text-align: center; border-radius: 0;">' + window.FFScriptUSER.settings.script107.topicMsg + (item['seeAuthor'] ? ' Autore: ' + $(this).prop('outerHTML') : '') + '</div>') : '<td class="info st-hidden-topic" colspan="7" style="cursor: pointer; text-align: center; border-radius: 0;"><div>' + window.FFScriptUSER.settings.script107.topicMsg + (item['seeAuthor'] ? ' Autore: ' + $(this).prop('outerHTML') : '') + '</div></td>')).siblings(':not(.info)').css({
+                            }).after(($(this).parent().is('div') ? ('<div class="info st-hidden-topic" style="cursor: pointer; text-align: center; border-radius: 0;">' + window.FFScript.settings.script107.topicMsg + (item['seeAuthor'] ? ' Autore: ' + $(this).prop('outerHTML') : '') + '</div>') : '<td class="info st-hidden-topic" colspan="7" style="cursor: pointer; text-align: center; border-radius: 0;"><div>' + window.FFScript.settings.script107.topicMsg + (item['seeAuthor'] ? ' Autore: ' + $(this).prop('outerHTML') : '') + '</div></td>')).siblings(':not(.info)').css({
                                 'display': 'none'
                             });
                         }
@@ -69,22 +69,22 @@ $(document).ready(function() {
         });
     }
 
-    $.each(window.FFScriptUSER.settings.script107.accounts, function(index, item) {
+    $.each(window.FFScript.settings.script107.accounts, function(index, item) {
         if ($('.box_m' + item['id']).length !== 0 && !$('body').is('#profile')) {
             item['author'] = ($('.box_m' + item['id']).find('.nick').length !== 0 ? $('.box_m' + item['id']).find('.nick').html() : $('.box_m' + item['id']).children('.details').children('a').prop('outerHTML'));
             $('.box_m' + item['id']).css({
                 'display': 'none'
-            }).after($('.box_m' + item['id']).is('li') ? '<li class="info st-hidden-post" style="cursor: pointer; text-align: center; border-radius: 0;"><div>' + window.FFScriptUSER.settings.script107.postMsg + (item['seeAuthor'] ? (' Autore: ' + item['author']) : '') + '</div></li>' : '<td class="info st-hidden-post" style="cursor: pointer; text-align: center; border-radius: 0;"><div>' + window.FFScriptUSER.settings.script107.postMsg + (item['seeAuthor'] ? (' Autore: ' + item['author']) : '') + '</div></td>');
+            }).after($('.box_m' + item['id']).is('li') ? '<li class="info st-hidden-post" style="cursor: pointer; text-align: center; border-radius: 0;"><div>' + window.FFScript.settings.script107.postMsg + (item['seeAuthor'] ? (' Autore: ' + item['author']) : '') + '</div></li>' : '<td class="info st-hidden-post" style="cursor: pointer; text-align: center; border-radius: 0;"><div>' + window.FFScript.settings.script107.postMsg + (item['seeAuthor'] ? (' Autore: ' + item['author']) : '') + '</div></td>');
             $('.quote_top').each(function() {
                 if ($(this).text().indexOf('(' + $(item['author']).text() + ' @') > -1) {
                     $(this).siblings('.quote').css({
                         'display': 'none'
-                    }).after('<div class="quote st-hidden-post" style="text-align: left; cursor: pointer;"><div class="info" style="text-align: center; border-radius: 0;">' + window.FFScriptUSER.settings.script107.postMsg + (item['seeAuthor'] ? (' Autore: ' + item['author']) : '') + '</div></div>');
+                    }).after('<div class="quote st-hidden-post" style="text-align: left; cursor: pointer;"><div class="info" style="text-align: center; border-radius: 0;">' + window.FFScript.settings.script107.postMsg + (item['seeAuthor'] ? (' Autore: ' + item['author']) : '') + '</div></div>');
                 } else if ($(this).children('mark').length > 0) {
                     if ($(this).text().indexOf('(' + $(item['author']).text()) > -1) {
                         $(this).siblings('.quote').css({
                             'display': 'none'
-                        }).after('<div class="quote st-hidden-post" style="text-align: left; cursor: pointer;"><div class="info" style="text-align: center; border-radius: 0;">' + window.FFScriptUSER.settings.script107.postMsg + (item['seeAuthor'] ? (' Autore: ' + item['author']) : '') + '</div></div>');
+                        }).after('<div class="quote st-hidden-post" style="text-align: left; cursor: pointer;"><div class="info" style="text-align: center; border-radius: 0;">' + window.FFScript.settings.script107.postMsg + (item['seeAuthor'] ? (' Autore: ' + item['author']) : '') + '</div></div>');
                     }
                 }
             });
@@ -95,7 +95,7 @@ $(document).ready(function() {
                     if ($(this).find('a[href*="/?act=Profile&MID="][rel="nofollow"]').attr('href').split("=")[2] == item['id']) {
                         $(this).css({
                             'display': 'none'
-                        }).after('<div class="info st-hidden-tags" style="cursor: pointer; text-align: center; border-radius: 0;">' + window.FFScriptUSER.settings.script107.tagMsg + (item['seeAuthor'] ? ' Autore: ' + $(this).find('a[href*="/?act=Profile&MID="][rel="nofollow"]').prop('outerHTML') : '') + '</div>')
+                        }).after('<div class="info st-hidden-tags" style="cursor: pointer; text-align: center; border-radius: 0;">' + window.FFScript.settings.script107.tagMsg + (item['seeAuthor'] ? ' Autore: ' + $(this).find('a[href*="/?act=Profile&MID="][rel="nofollow"]').prop('outerHTML') : '') + '</div>')
                     }
                 });
             }
