@@ -1,1 +1,0 @@
-# Script di Steb95
