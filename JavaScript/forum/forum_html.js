@@ -1,4 +1,4 @@
-if (typeof FFBcredits === "undefined") {FFBcredits = [];} if(document.querySelector('script[src="//ffb.forumfree.net/js/credits.js"]') == null) {var a = document.createElement("script");a.setAttribute("type", "text/javascript");a.setAttribute("src", "//ffb.forumfree.net/js/credits.js");document.getElementsByTagName("head")[0].appendChild(a);}FFBcredits.push({sId: 75752771,sName: "HTML nella lista sezioni",aId: 11674905,aName: "Steb95"});
+if(typeof(FFBCredits) === "undefined") { FFBCredits = []; } FFBcredits.push({sId: 75752771,sName: "HTML nella lista sezioni",aId: 11674905,aName: "Steb95"});
 
 $(document).ready(function() {
     var obj = null,
