@@ -1,3 +1,5 @@
+if(typeof(FFBCredits) === "undefined") { FFBCredits = []; } FFBcredits.push({sId: 76344172,sName: "Lettore feed con notifica",aId: 11674905,aName: "Steb95"});
+
 $(document).ready(function() {
     function uniqueArray(array, key) {
         var flags = [],
