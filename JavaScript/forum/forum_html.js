@@ -8,24 +8,24 @@ $(document).ready(function() {
             'beforeend',
             'afterend'
         ];
-    for (var i = 0, size = window.FFScript.settings.script16.length; i < size; i++) {
-        if (window.FFScript.settings.script16[i].where >= 1 && window.FFScript.settings.script16[i].where <= 4) {
-            if (!isNaN(Number(window.FFScript.settings.script16[i].id))) {
-                window.FFScript.settings.script16[i].id = 'f' + window.FFScript.settings.script16[i].id;
+    for (var i = 0, size = scriptInfo.settings.length; i < size; i++) {
+        if (scriptInfo.settings[i].where >= 1 && scriptInfo.settings[i].where <= 4) {
+            if (!isNaN(Number(scriptInfo.settings[i].id))) {
+                scriptInfo.settings[i].id = 'f' + scriptInfo.settings[i].id;
             }
-            obj = document.getElementById(window.FFScript.settings.script16[i].id);
+            obj = document.getElementById(scriptInfo.settings[i].id);
             if (obj !== null) {
-                obj.insertAdjacentHTML(positions[window.FFScript.settings.script16[i].where - 1], window.FFScript.settings.script16[i].html)
+                obj.insertAdjacentHTML(positions[scriptInfo.settings[i].where - 1], scriptInfo.settings[i].html)
             } else {
-                obj = document.getElementsByClassName(window.FFScript.settings.script16[i].id)[0];
+                obj = document.getElementsByClassName(scriptInfo.settings[i].id)[0];
                 if (typeof obj !== "undefined") {
                     obj = obj.previousElementSibling;
                     while (!obj.classList.contains('group-section')) {
                         obj = obj.previousElementSibling;
                     }
-                    obj.insertAdjacentHTML(positions[window.FFScript.settings.script16[i].where - 1], window.FFScript.settings.script16[i].html)
+                    obj.insertAdjacentHTML(positions[scriptInfo.settings[i].where - 1], scriptInfo.settings[i].html)
                 } else {
-					console.log("L'id "+window.FFScript.settings.script16[i].id+" non è stato trovato.");
+					console.log("L'id "+scriptInfo.settings[i].id+" non è stato trovato.");
 				}
             }
         }
