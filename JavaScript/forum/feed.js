@@ -21,12 +21,12 @@ $(document).ready(function() {
     function removeTags(str) {
         return str.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '').replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '').replace('<br />', ' ').replace(/<\/?\w+[^>]*\/?>/g, '').trim();
     };
-    window.FFScript.settings.script109.feeds = uniqueArray(window.FFScript.settings.script109.feeds, 'link');
-    var links = getElementsFromArray(window.FFScript.settings.script109.feeds, 'link'),
+    scriptInfo.settings.feeds = uniqueArray(scriptInfo.settings.feeds, 'link');
+    var links = getElementsFromArray(scriptInfo.settings.feeds, 'link'),
         linkError = '<div class="alert">Feed {number}: il link che hai inserito non &egrave; valido!<br>Se hai bisogno di aiuto apri una nuova discussione nella sezione <a href="https://ffboard.forumfree.it/?f=64397043" target="_blank">Supporto Script</a>.</div>',
         feedError = '<div class="alert">Feed {number}: il link che hai inserito non &egrave; un <u>feed valido</u>!<br>Se hai bisogno di aiuto apri una nuova discussione nella sezione <a href="https://ffboard.forumfree.it/?f=64397043" target="_blank">Supporto Script</a>.</div>',
         defaultCss = ".st-new-items{margin:20px;text-align:left}.st-feed{max-height:300px;box-sizing:border-box;margin:20px 0;padding:0 20px;overflow-y:scroll;text-align:left;list-style-type:none}.st-feed-item{padding:5px 0;position:relative}.st-feed-item:not(:last-child){border-bottom:1px solid #b1afaf}.st-item-desc,.st-item-title{max-width:80%;margin:0}.st-item-title{font-size:1.1em;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.st-item-title a{transition:left .5s;position:relative;left:0}.st-item-title a:hover{left:10px}.st-item-title a:before{content:'\\201C';font-family:arial;font-size:1.5em;position:absolute;left:120px;top:0;opacity:0;transition:all .5s}.st-item-desc,.st-item-time{font-size:.9em}.st-item-title a:hover:before{left:-10px;opacity:1}.st-item-time{position:absolute;right:0;top:calc(50% - 8px)}";
-    if (window.FFScript.settings.script109.defaultStyle) $('head').append('<style>' + defaultCss + '</style>');
+    if (scriptInfo.settings.defaultStyle) $('head').append('<style>' + defaultCss + '</style>');
     $.ajax({
         url: '//ffb.forumfree.net/php/cors_proxy.php',
         type: 'POST',
@@ -46,7 +46,7 @@ $(document).ready(function() {
             var localSt = {},
                 ntf = {},
                 prevSt = (localStorage.getItem('stFeedScript') === null) ? false : JSON.parse(localStorage.getItem('stFeedScript'));
-            window.FFScript.settings.script109.feeds.forEach(function(feedInfo, index) {
+            scriptInfo.settings.feeds.forEach(function(feedInfo, index) {
                 if ($(feedInfo.selector).length !== 0) {
                     if ($.isEmptyObject(r) || typeof r[btoa(feedInfo.link)] == 'undefined' || r[btoa(feedInfo.link)].content === false) {
                         $(feedInfo.selector).append(linkError.replace('{number}', index + 1));
@@ -110,7 +110,7 @@ $(document).ready(function() {
             }
 
             function feedObject(feedInfo, ntf, feedNum) {
-                var d='', feedHtml = (typeof ntf != 'undefined' ? '<div class="st-new-items st-feed-' + feedNum + '">' + ntf + ' ' + window.FFScript.settings.script109.notifyMsg + '</div>' : '') + '<div class="st-feed-object st-feed-' + feedNum + '"><ul class="st-feed">';
+                var d='', feedHtml = (typeof ntf != 'undefined' ? '<div class="st-new-items st-feed-' + feedNum + '">' + ntf + ' ' + scriptInfo.settings.notifyMsg + '</div>' : '') + '<div class="st-feed-object st-feed-' + feedNum + '"><ul class="st-feed">';
                 feedInfo.items.each(function() {
                     if (feedInfo.date && $(this).find(feedInfo.tags.time).length > 0) {
                         d = new Date($(this).find(feedInfo.tags.time).text());
