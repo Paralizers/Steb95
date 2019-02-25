@@ -1,4 +1,4 @@
-if(typeof(FFBCredits) === "undefined") { FFBCredits = []; } FFBcredits.push({sId: 75752771,sName: "HTML nella lista sezioni",aId: 11674905,aName: "Steb95"});
+if(typeof(FFBcredits) === "undefined") { FFBcredits = []; } FFBcredits.push({sId: 75752771,sName: "HTML nella lista sezioni",aId: 11674905,aName: "Steb95"});
 
 $(document).ready(function() {
     var obj = null,
