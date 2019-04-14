@@ -10,6 +10,7 @@ $(document).ready(function() {
         ];
     for (var i = 0, size = scriptInfo.settings.length; i < size; i++) {
         if (scriptInfo.settings[i].where >= 1 && scriptInfo.settings[i].where <= 4) {
+            if(scriptInfo.settings[i].id.indexOf('#') === 0 || scriptInfo.settings[i].id.indexOf('.') === 0) scriptInfo.settings[i].id = scriptInfo.settings[i].id.substr(1);
             if (!isNaN(Number(scriptInfo.settings[i].id))) {
                 scriptInfo.settings[i].id = 'f' + scriptInfo.settings[i].id;
             }
@@ -25,8 +26,8 @@ $(document).ready(function() {
                     }
                     obj.insertAdjacentHTML(positions[scriptInfo.settings[i].where - 1], scriptInfo.settings[i].html)
                 } else {
-					console.log("L'id "+scriptInfo.settings[i].id+" non è stato trovato.");
-				}
+                    console.log("L'id "+scriptInfo.settings[i].id+" non &egrave; stato trovato.");
+                }
             }
         }
     }
