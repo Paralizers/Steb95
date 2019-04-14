@@ -26,7 +26,7 @@ $(document).ready(function() {
                     }
                     obj.insertAdjacentHTML(positions[scriptInfo.settings[i].where - 1], scriptInfo.settings[i].html)
                 } else {
-                    console.log("L'id "+scriptInfo.settings[i].id+" non &egrave; stato trovato.");
+                    console.log("Selettore "+scriptInfo.settings[i].id+" non trovato.");
                 }
             }
         }
