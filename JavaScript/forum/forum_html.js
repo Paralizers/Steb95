@@ -8,25 +8,23 @@ $(document).ready(function() {
             'beforeend',
             'afterend'
         ];
-    for (var i = 0, size = scriptInfo.settings.length; i < size; i++) {
-        if (scriptInfo.settings[i].where >= 1 && scriptInfo.settings[i].where <= 4) {
-            if(scriptInfo.settings[i].id.indexOf('#') === 0 || scriptInfo.settings[i].id.indexOf('.') === 0) scriptInfo.settings[i].id = scriptInfo.settings[i].id.substr(1);
-            if (!isNaN(Number(scriptInfo.settings[i].id))) {
-                scriptInfo.settings[i].id = 'f' + scriptInfo.settings[i].id;
-            }
+    for(var i = 0, size = scriptInfo.settings.length; i < size; i++) {
+        if(scriptInfo.settings[i].where >= 1 && scriptInfo.settings[i].where <= 4) {
+            if(scriptInfo.settings[i].id.indexOf('#') === 0) scriptInfo.settings[i].id = scriptInfo.settings[i].id.substr(1);
+            if(!isNaN(Number(scriptInfo.settings[i].id))) scriptInfo.settings[i].id = 'f' + scriptInfo.settings[i].id;
             obj = document.getElementById(scriptInfo.settings[i].id);
-            if (obj !== null) {
-                obj.insertAdjacentHTML(positions[scriptInfo.settings[i].where - 1], scriptInfo.settings[i].html)
-            } else {
-                obj = document.getElementsByClassName(scriptInfo.settings[i].id)[0];
-                if (typeof obj !== "undefined") {
-                    obj = obj.previousElementSibling;
-                    while (!obj.classList.contains('group-section')) {
+            if(obj !== null) {
+                obj.insertAdjacentHTML(positions[scriptInfo.settings[i].where - 1], scriptInfo.settings[i].html);
+                continue;
+            }
+            if(typeof ff_layout === 'undefined') {
+                if(document.body.id === 'board' || document.body.id === 'forum') {
+                    obj = document.getElementById(scriptInfo.settings[i].id.replace('c', 'f'));
+                    if(obj !== null) {
                         obj = obj.previousElementSibling;
+                        obj.insertAdjacentHTML(positions[scriptInfo.settings[i].where - 1], scriptInfo.settings[i].html);
+                        continue;
                     }
-                    obj.insertAdjacentHTML(positions[scriptInfo.settings[i].where - 1], scriptInfo.settings[i].html)
-                } else {
-                    console.log("Selettore "+scriptInfo.settings[i].id+" non trovato.");
                 }
             }
         }
