@@ -9,13 +9,13 @@ $(document).ready(function() {
         if(!window.FFLib.info.forum.isFFMobile()) {
             if (window.FFLib.info.forum.isTopic()) $('.fast.send .Item:first-child .left.Sub').append(select);
             else if(window.FFLib.info.forum.isFullEditor()) $('.send .Item:first-child .left.Sub > div').append(select);
-            $('select.st-custom-select').addClass('codebuttons');
+            $('select.st-user-custom-select').addClass('codebuttons');
         }
         else {
             $('label[for="track_topic"]').after(select);
-            $('select.st-custom-select').addClass('forminput');
+            $('select.st-user-custom-select').addClass('forminput');
         }
-        $('select.st-custom-select').change(function() {
+        $('select.st-user-custom-select').change(function() {
             if($(this).val() !== '') {
                 var currentText = $('textarea#Post').val(), startPos = $('textarea#Post').prop("selectionStart");
                 $('textarea#Post').val(currentText.substring(0, startPos) + $(this).val() + currentText.substring($('textarea#Post').prop("selectionEnd")));
@@ -23,7 +23,7 @@ $(document).ready(function() {
                 $('textarea#Post').prop("selectionStart", (startPos + $(this).val().length));
                 $('textarea#Post').prop("selectionEnd", (startPos + $(this).val().length));
             }
-            $('select.st-custom-select :nth-child(1)').prop('selected', true);
+            $('select.st-user-custom-select :nth-child(1)').prop('selected', true);
         });
     }
 });
