@@ -7,8 +7,14 @@ $(document).ready(function() {
     if(selectOptions !== '') {
         var select = '<select class="st-user-custom-select" style="margin-left:10px;"><option value="" selected>' + scriptInfo.settings.selectTitle + '</option>' + selectOptions + '</select>';
         if(!window.FFLib.info.forum.isFFMobile()) {
-            if (window.FFLib.info.forum.isTopic()) $('.fast.send .Item:first-child .left.Sub').append(select);
-            else if(window.FFLib.info.forum.isFullEditor()) $('.send .Item:first-child .left.Sub > div').append(select);
+            if(window.FFLib.info.forum.isQuirks()) {
+                if(window.FFLib.info.forum.isTopic()) $('form[name="REPLIER"] input[name="SPOILER"]').parent('div').append(select);
+                else if(window.FFLib.info.forum.isFullEditor()) $('form[name="REPLIER"] select[name="FONT"]').parent('div').append(select);
+            }
+            else {
+                if(window.FFLib.info.forum.isTopic()) $('.fast.send .Item:first-child .left.Sub').append(select);
+                else if(window.FFLib.info.forum.isFullEditor()) $('.send .Item:first-child .left.Sub > div').append(select);
+            }
             $('select.st-user-custom-select').addClass('codebuttons');
         }
         else {
