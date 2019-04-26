@@ -3,7 +3,7 @@ $(document).ready(function() {
     scriptInfo.settings.optionList = window.FFLib.utilities.uniqueItems(scriptInfo.settings.optionList, 'title');
     scriptInfo.settings.optionList.forEach(function (elm) {
         if((elm.adminOnly && (window.FFLib.info.user.isAdmin() || window.FFLib.info.user.isScriptAdmin())) || (elm.customUserId !== '' && elm.customUserId.split(',').indexOf(window.FFLib.info.user.id.toString()) > -1) || (elm.customGroupId !== '' && elm.customGroupId.split(',').indexOf(window.FFLib.info.user.getGroup()) > -1) || (!elm.adminOnly && elm.customUserId === '' && elm.customGroupId === '')) {
-            if(elm.title !== '') selectOptions += '<option value="' + elm.value.replace(/"/g, '&quot;') + '">' + elm.title.replace(/"/g, '&quot;') + '</option>';
+            if(elm.title !== '' && elm.value !== '') selectOptions += '<option value="' + window.FFLib.utilities.removeTags(elm.value.replace(/"/g, '&quot;')) + '">' + window.FFLib.utilities.removeTags(elm.title.replace(/"/g, '&quot;')) + '</option>';
         }
     });
     if(selectOptions !== '') {
