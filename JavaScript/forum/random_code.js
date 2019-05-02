@@ -2,7 +2,7 @@ $(document).ready(function() {
 	(({
 		'randomize': function() {
 			$('head').append('<style id="st-random-code-script">[class^="st-random-"]{overflow:hidden;}</style>');
-			randomList.forEach((randomItem, index) => {
+			scriptInfo.settings.randomList.forEach((randomItem, index) => {
 				if($(randomItem.selector).length === 0) return;
 				randomItem.randomElements = this.purify(randomItem.randomElements);
 				if(randomItem.attribute !== '') {
