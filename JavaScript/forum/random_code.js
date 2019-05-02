@@ -87,10 +87,10 @@ $(document).ready(function() {
 			switch(options.direction) {
 				case 'top':
 				case 'bottom':
-					start = $(selector).outerHeight(true) + 'px'; line = '-' + $('.st-random-'+number).outerHeight(true) + 'px';
+					start = $(selector).outerHeight() + 'px'; line = '-' + $('.st-random-'+number).outerHeight() + 'px';
 					break;
 				default:
-					start = $(selector).outerWidth(true) + 'px'; line = '-' + $('.st-random-'+number).outerWidth(true) + 'px';
+					start = $(selector).outerWidth() + 'px'; line = '-' + $('.st-random-'+number).outerWidth() + 'px';
 			}
 			animation['end'][options.direction] = line;
 			animation['start'][options.direction] = 0;
