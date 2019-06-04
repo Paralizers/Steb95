@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    console.log('[st-user-custom-select] Info: init!', 'Length: ' + scriptInfo.settings.optionList.length);
     var selectOptions = '';
     scriptInfo.settings.optionList = window.FFLib.utilities.uniqueItems(scriptInfo.settings.optionList, 'title');
     scriptInfo.settings.optionList.forEach(function (elm) {
@@ -30,5 +31,8 @@ $(document).ready(function() {
             }
             $('select.st-user-custom-select :nth-child(1)').prop('selected', true);
         });
+    }
+    else {
+        console.log('[st-user-custom-select] Errore: nessuna opzione inserita!');
     }
 });
