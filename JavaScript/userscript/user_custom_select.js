@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    console.log('[st-user-custom-select] Info: init!', 'Length: ' + scriptInfo.settings.optionList.length);
+    
     var selectOptions = '';
     scriptInfo.settings.optionList = window.FFLib.utilities.uniqueItems(scriptInfo.settings.optionList, 'title');
     scriptInfo.settings.optionList.forEach(function (elm) {
